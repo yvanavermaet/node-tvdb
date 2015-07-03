@@ -45,11 +45,12 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
             self.request.post({
                 uri: "/login",
                 body: {
-                    "apikey": apiKey
+                    apikey: apiKey
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 self.token = data.token;
                 resolve();
             });
@@ -69,8 +70,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     Authorization: ("Bearer " + (self.token))
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 self.token = data.token;
                 resolve();
             });
@@ -90,8 +92,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     Authorization: ("Bearer " + (self.token))
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
@@ -110,8 +113,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Authorization": ("Bearer " + (self.token))
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data);
             });
         });
@@ -141,8 +145,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                 },
                 qs: query
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
@@ -162,8 +167,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data.params);
             });
         });
@@ -183,8 +189,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function(err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
@@ -196,7 +203,17 @@ MIXIN$0(Client.prototype,proto$0);proto$0=void 0;return Client;})();
 // Utilities
 //
 
+function handleError(err, res, data, callback) {
+    if (!err && data && data.Error) {
+        err = new Error(data.Error);
+    }
 
+    if (res && res.statusCode) {
+        err.status = err.statusCode = res.statusCode;
+    }
+
+    return callback(err);
+}
 
 //
 // Exports
