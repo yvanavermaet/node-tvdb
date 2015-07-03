@@ -12,16 +12,6 @@
 const request = require("request");
 
 //
-// updating for the new tvdb api
-// - more info: https://forums.thetvdb.com/viewtopic.php?f=17&t=23259
-// - api reference: https://api-dev.thetvdb.com/swagger
-//
-// lots of refactoring of this code will take place once the api methods from the
-// reference web page is added below. for now, please just add the remaining methods
-// and then we can move the request and error handling to its own dedicated function
-//
-
-//
 // API Client
 //
 
@@ -49,7 +39,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Authentication/post_login
 
     auth(apiKey) {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.post({
@@ -70,7 +60,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Authentication/get_refresh_token
 
     refreshToken() {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.get({
@@ -91,7 +81,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Languages/get_languages
 
     getLanguages() {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.get({
@@ -111,7 +101,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Languages/get_languages_id
 
     getLanguage(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.get({
@@ -131,11 +121,9 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Search/get_search_series
 
     searchSeries(key, value) {
-        let self = this;
+        const self = this;
 
         // default to "name" key if only one param passed
-        console.log(arguments.length)
-
         if (arguments.length === 1) {
             value = key;
             key = "name";
@@ -164,7 +152,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Search/get_search_series_params
 
     searchSeriesParams() {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.get({
@@ -185,7 +173,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id
 
     getSeries(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function(resolve, reject) {
             self.request.get({
