@@ -134,15 +134,17 @@ class Client {
         let self = this;
 
         // default to "name" key if only one param passed
-        if (value == null) {
+        console.log(arguments.length)
+
+        if (arguments.length === 1) {
             value = key;
             key = "name";
         }
 
-        return new Promise(function(resolve, reject) {
-            let query = {};
-            query[key] = value;
+        let query = {};
+        query[key] = value;
 
+        return new Promise(function(resolve, reject) {
             self.request.get({
                 uri: "/search/series",
                 headers: {
