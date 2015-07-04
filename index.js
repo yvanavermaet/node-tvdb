@@ -116,7 +116,7 @@ class Client {
                 if (err || res.statusCode !== 200) {
                     return handleError(err, res, data, reject);
                 }
-                resolve(data);
+                resolve(data.data);
             });
         });
     }
@@ -197,10 +197,11 @@ class Client {
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes
 
     getSeriesEpisodes(id, page) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -213,18 +214,19 @@ class Client {
                     page: page ? page : 1
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
-    // https://api-dev.thetvdb.com/swagger#!/Episodes
-    // Episode ID
+
+    // https://api-dev.thetvdb.com/swagger#!/Episodes/get_episodes_id
 
     getEpisode(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -234,17 +236,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query
-    // TO-DO: Check if query as parameters is ok
+
     getEpisodeQuery(id, params) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -255,17 +259,19 @@ class Client {
                 },
                 qs: params
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query_params
 
     getSeriesEpisodesParams(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -275,17 +281,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_summary
 
-    getEpisodeSummary(id) {
-        let self = this;
+    getSeriesEpisodeSummaries(id) {
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -295,17 +303,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter
 
     getSeriesFilter(id, keys) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -318,18 +328,19 @@ class Client {
                     keys: keys
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
-
     }
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter_params
 
     getSeriesFilterParam(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -339,17 +350,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images
 
     getSeriesImages(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -359,20 +372,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query
-    // TO-DO: verify how to send query params
-    // keyType
-    // resolution
-    // subKey
+
     getSeriesImagesQuery(id, params) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -383,17 +395,19 @@ class Client {
                 },
                 qs: params
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query_params
 
     getSeriesImagesParams(id) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -403,18 +417,19 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     }
 
-    //Updates
+
     // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query
 
     getUpdates(fromTime, toTime) {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -428,8 +443,9 @@ class Client {
                     toTime: toTime
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
@@ -439,7 +455,7 @@ class Client {
     // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query_params
 
     getUpdatesParams() {
-        let self = this;
+        const self = this;
 
         return new Promise(function (resolve, reject) {
             self.request.get({
@@ -449,8 +465,9 @@ class Client {
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });

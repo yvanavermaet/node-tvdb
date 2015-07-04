@@ -116,7 +116,7 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                 if (err || res.statusCode !== 200) {
                     return handleError(err, res, data, reject);
                 }
-                resolve(data);
+                resolve(data.data);
             });
         });
     };
@@ -197,6 +197,7 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
         });
     };
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes
 
     proto$0.getSeriesEpisodes = function(id, page) {
@@ -213,15 +214,16 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     page: page ? page : 1
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
 
-    // https://api-dev.thetvdb.com/swagger#!/Episodes
-    // Episode ID
+
+    // https://api-dev.thetvdb.com/swagger#!/Episodes/get_episodes_id
 
     proto$0.getEpisode = function(id) {
         var self = this;
@@ -234,15 +236,17 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query
-    // TO-DO: Check if query as parameters is ok
+
     proto$0.getEpisodeQuery = function(id, params) {
         var self = this;
 
@@ -255,12 +259,14 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                 },
                 qs: params
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query_params
 
@@ -275,16 +281,18 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_summary
 
-    proto$0.getEpisodeSummary = function(id) {
+    proto$0.getSeriesEpisodeSummaries = function(id) {
         var self = this;
 
         return new Promise(function (resolve, reject) {
@@ -295,12 +303,14 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter
 
@@ -318,13 +328,14 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     keys: keys
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
-
     };
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter_params
 
@@ -339,12 +350,14 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images
 
@@ -359,18 +372,17 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
 
+
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query
-    // TO-DO: verify how to send query params
-    // keyType
-    // resolution
-    // subKey
+
     proto$0.getSeriesImagesQuery = function(id, params) {
         var self = this;
 
@@ -383,12 +395,14 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                 },
                 qs: params
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
+
 
     // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query_params
 
@@ -403,14 +417,15 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
     };
 
-    //Updates
+
     // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query
 
     proto$0.getUpdates = function(fromTime, toTime) {
@@ -428,8 +443,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     toTime: toTime
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
@@ -449,8 +465,9 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
                     "Accept-Language": self.language
                 }
             }, function (err, res, data) {
-                if (err) return reject(err);
-
+                if (err || res.statusCode !== 200) {
+                    return handleError(err, res, data, reject);
+                }
                 resolve(data.data);
             });
         });
