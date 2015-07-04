@@ -197,6 +197,266 @@ var Client = (function(){var PRS$0 = (function(o,t){o["__proto__"]={"a":t};retur
         });
     };
 
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes
+
+    proto$0.getSeriesEpisodes = function(id, page) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("/series/" + id) + "/episodes"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                },
+                qs: {
+                    page: page ? page : 1
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Episodes
+    // Episode ID
+
+    proto$0.getEpisode = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: ("episodes/" + id),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query
+    // TO-DO: Check if query as parameters is ok
+    proto$0.getEpisodeQuery = function(id, params) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/episodes/query"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                },
+                qs: params
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query_params
+
+    proto$0.getSeriesEpisodesParams = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/episodes/query/params"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_summary
+
+    proto$0.getEpisodeSummary = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/episodes/summary"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter
+
+    proto$0.getSeriesFilter = function(id, keys) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/filter"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                },
+                qs: {
+                    keys: keys
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter_params
+
+    proto$0.getSeriesFilterParam = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/filter/params"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images
+
+    proto$0.getSeriesImages = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/images"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query
+    // TO-DO: verify how to send query params
+    // keyType
+    // resolution
+    // subKey
+    proto$0.getSeriesImagesQuery = function(id, params) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/images/query"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                },
+                qs: params
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query_params
+
+    proto$0.getSeriesImagesParams = function(id) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: (("series/" + id) + "/images/query/params"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+    //Updates
+    // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query
+
+    proto$0.getUpdates = function(fromTime, toTime) {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: ("updated/query"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                },
+                qs: {
+                    fromTime: fromTime,
+                    toTime: toTime
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+
+    // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query_params
+
+    proto$0.getUpdatesParams = function() {
+        var self = this;
+
+        return new Promise(function (resolve, reject) {
+            self.request.get({
+                uri: ("updated/query/params"),
+                headers: {
+                    "Authorization": ("Bearer " + (self.token)),
+                    "Accept-Language": self.language
+                }
+            }, function (err, res, data) {
+                if (err) return reject(err);
+
+                resolve(data.data);
+            });
+        });
+    };
+
+
 MIXIN$0(Client.prototype,proto$0);proto$0=void 0;return Client;})();
 
 //
