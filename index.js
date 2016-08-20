@@ -18,7 +18,7 @@ const request = require("request");
 class Client {
 
     constructor(opts) {
-        const TVDB_API_VERSION = "1.2.0";
+        const TVDB_API_VERSION = "2.1.1";
 
         opts = opts || {};
 
@@ -26,7 +26,7 @@ class Client {
         this.token = opts.token;
 
         this.request = request.defaults({
-            baseUrl: "https://api-dev.thetvdb.com/",
+            baseUrl: "https://api.thetvdb.com",
             headers: {
                 "User-Agent": "edwellbrook/node-tvdb",
                 "Accept": `application/vnd.thetvdb.v${TVDB_API_VERSION}`
@@ -36,7 +36,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Authentication/post_login
+    // https://api.thetvdb.com/swagger#!/Authentication/post_login
 
     auth(apiKey) {
         const self = this;
@@ -58,7 +58,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Authentication/get_refresh_token
+    // https://api.thetvdb.com/swagger#!/Authentication/get_refresh_token
 
     refreshToken() {
         const self = this;
@@ -80,7 +80,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Languages/get_languages
+    // https://api.thetvdb.com/swagger#!/Languages/get_languages
 
     getLanguages() {
         const self = this;
@@ -101,7 +101,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Languages/get_languages_id
+    // https://api.thetvdb.com/swagger#!/Languages/get_languages_id
 
     getLanguage(id) {
         const self = this;
@@ -122,7 +122,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Search/get_search_series
+    // https://api.thetvdb.com/swagger#!/Search/get_search_series
 
     searchSeries(key, value) {
         const self = this;
@@ -154,7 +154,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Search/get_search_series_params
+    // https://api.thetvdb.com/swagger#!/Search/get_search_series_params
 
     searchSeriesParams() {
         const self = this;
@@ -176,7 +176,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id
 
     getSeries(id) {
         const self = this;
@@ -198,7 +198,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_episodes
 
     getSeriesEpisodes(id, page) {
         const self = this;
@@ -223,7 +223,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Episodes/get_episodes_id
+    // https://api.thetvdb.com/swagger#!/Episodes/get_episodes_id
 
     getEpisode(id) {
         const self = this;
@@ -245,7 +245,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_episodes_query
 
     getEpisodeQuery(id, params) {
         const self = this;
@@ -268,7 +268,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_query_params
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_episodes_query_params
 
     getSeriesEpisodesParams(id) {
         const self = this;
@@ -290,7 +290,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_episodes_summary
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_episodes_summary
 
     getSeriesEpisodeSummaries(id) {
         const self = this;
@@ -312,7 +312,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_filter
 
     getSeriesFilter(id, keys) {
         const self = this;
@@ -337,7 +337,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_filter_params
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_filter_params
 
     getSeriesFilterParam(id) {
         const self = this;
@@ -359,7 +359,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_images
 
     getSeriesImages(id) {
         const self = this;
@@ -381,7 +381,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_images_query
 
     getSeriesImagesQuery(id, params) {
         const self = this;
@@ -404,7 +404,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Series/get_series_id_images_query_params
+    // https://api.thetvdb.com/swagger#!/Series/get_series_id_images_query_params
 
     getSeriesImagesParams(id) {
         const self = this;
@@ -426,7 +426,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query
+    // https://api.thetvdb.com/swagger#!/Updates/get_updated_query
 
     getUpdates(fromTime, toTime) {
         const self = this;
@@ -452,7 +452,7 @@ class Client {
     }
 
 
-    // https://api-dev.thetvdb.com/swagger#!/Updates/get_updated_query_params
+    // https://api.thetvdb.com/swagger#!/Updates/get_updated_query_params
 
     getUpdatesParams() {
         const self = this;

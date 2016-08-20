@@ -20,12 +20,13 @@
     "url": "git://github.com/edwellbrook/node-tvdb.git"
   },
   "dependencies": {
-    "request": "^2.58.0"
+    "request": "^2.74.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-es6-transpiler": "^1.0.1",
-    "mocha": "^2.2.5"
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "babel-preset-es2015": "^6.13.2",
+    "mocha": "^3.0.2"
   },
   "scripts": {
     "test": "gulp && mocha test",
